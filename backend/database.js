@@ -14,10 +14,10 @@
         return rows;
     }
 
-    export async function sendData(){
+    export async function sendData(test){
         const [rows] = await pool.query(
         'INSERT INTO questions (question, opt_a, opt_b, opt_c, opt_d, answer) VALUES ?',
-        []
+        [test]
         );
         return rows;    
     }
