@@ -1,6 +1,6 @@
 import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import  NavBar  from './components/Navbar'
+import  ComplexNavbar  from './components/Navbar'
 import Form from 'react-bootstrap/Form';
 import axios from 'axios'
 import './index.css'
@@ -43,7 +43,7 @@ function Test(){
 
 root.render(
   <StrictMode>
-    <Test/>
-    <NavBar />
+    <ComplexNavbar />
+    <Test />
   </StrictMode>
 )
