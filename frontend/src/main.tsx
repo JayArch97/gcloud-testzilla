@@ -1,28 +1,43 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import React from 'react'
+import  NavBar  from './components/Navbar'
+import axios from 'axios'
 import './index.css'
 
 const root = createRoot(document.getElementById('root')!)
 
-type Props = {
-  name?: string;
-  buttonComponent? : any
-  isSmallText? : boolean
+
+
+function Test(){
+  const [questions, setQuestions] = useState<{ question: string }[]>([])
+
+  useEffect(() => {
+    getQuestions().then(data=> setQuestions(data))
+  }, [])
+
+  const getQuestions =  () => {
+    return axios.get('http://localhost:3000/questions').then(response => {
+      console.log(response.data)
+      return response.data
+    }).catch(error => {
+      console.log(error)
+    })
   }
-  
-  const Header = ({name, buttonComponent, isSmallText}: Props) => {
-    return (
-      <div className='mb-5 flex w-full items-center justify-between color: #000'>
-        <h1 className={`${isSmallText? "text-lg" : "text-2xl"} font-semibold text-black` }>
-          {name}
-        </h1>
-        {buttonComponent}
-      </div>
-    )
-  }
+  return (
+    <>
+      <ul>
+        {questions.map((question)=>(
+          <li>{question.question}</li>
+        ))}
+      </ul> 
+    </>
+  )
+} 
+
+
 root.render(
   <StrictMode>
-    <Header />
+    <Test/>
+    <NavBar />
   </StrictMode>
 )

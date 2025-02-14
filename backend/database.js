@@ -9,6 +9,16 @@
         database: process.env.MYSQL_DATABASE,
     }).promise();
 
+    export async function getData(){
+        const [rows] = await pool.query('SELECT * FROM questions');
+        return rows;
+    }
+
+     export async function getQuestions(contains){
+        const [rows] =  await pool.query('SELECT * FROM questions WHERE question LIKE ?', [contains]);
+        return rows;
+    }
+
     export async function sendData(test){
         const [rows] = await pool.query(
         'INSERT INTO questions (question, opt_a, opt_b, opt_c, opt_d, answer) VALUES ?',

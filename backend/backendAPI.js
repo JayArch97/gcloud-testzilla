@@ -1,10 +1,23 @@
 import express from "express";
+import { getData , getQuestions } from "./database.js";
+import cors from "cors";
 
 const app = express();
 
-app.get("/", (req, res) => { 
-    res.send("Get values from database");
+app.use(cors());
+
+app.get("/questions", async (req, res) => { 
+    const questions = await getData();
+    res.send(questions);
  });
+
+ app.get("/questions/:contains", async (req, res) => {
+    const contains = req.params.contains;
+    const questions = await getQuestions(`%${contains}%`);
+    console.log(contains)
+    res.send(questions);
+ });  
+ 
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
