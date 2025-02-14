@@ -1,6 +1,7 @@
 import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import  NavBar  from './components/Navbar'
+import Form from 'react-bootstrap/Form';
 import axios from 'axios'
 import './index.css'
 
@@ -25,11 +26,16 @@ function Test(){
   }
   return (
     <>
+    <Form>
       <ul>
         {questions.map((question)=>(
-          <li>{question.question}</li>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+         <Form.Label>{question.question}</Form.Label>
+         <Form.Control type="email" placeholder="Enter email" />
+         </Form.Group>
         ))}
       </ul> 
+      </Form>
     </>
   )
 } 
