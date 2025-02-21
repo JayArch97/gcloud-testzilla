@@ -7,13 +7,24 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy-gcp": "gsutil cp -r dist/* gs://julio-react"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.0.0",
+    "@heroicons/react": "^2.2.0",
+    "@material-tailwind/react": "^2.1.10",
+    "@reduxjs/toolkit": "^2.5.1",
+    "@tailwindcss/vite": "^4.0.7",
+    "axios": "^1.7.9",
+    "bootstrap": "^5.3.3",
+    "lucide-react": "^0.475.0",
+    "mdb-react-ui-kit": "^9.0.0",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.9",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^4.0.0"
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
+    "tailwindcss": "^4.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
