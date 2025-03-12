@@ -7,7 +7,7 @@
     const clientOptions = await connector.getOptions({
         instanceConnectionName: 'acostajulio-dev:us-central1:gpc-test-db',
         ipType: 'PUBLIC',
-    })
+    });
 
     const pool = mysql.createPool({
         ...clientOptions,
@@ -26,6 +26,18 @@
         return rows;
     }
 
+
+    export async function getUsers(){
+        const [rows] =  await pool.query('SELECT * FROM Users');
+        return rows;
+    }
+
+    export async function getScores(){
+        const [rows] =  await pool.query('SELECT * FROM Scorecard');
+        return rows;
+    }
+
+    
     export async function sendData(test){
         const [rows] = await pool.query(
         'INSERT INTO questions (questions, opt_a, opt_b, opt_c, opt_d, answer) VALUES ?',

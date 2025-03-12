@@ -1,5 +1,5 @@
 import express from "express";
-import { getData , getQuestions } from "./functions/database.js";
+import { getData as data , getQuestions, getUsers, getScores as scorecard} from "./functions/database.js";
 import cors from "cors";
 
 const app = express();
@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 
 app.get("/", async (req, res) => { 
-    const questions = await getData();
+    const questions = await data();
     res.send(questions);
  });
 
@@ -18,6 +18,17 @@ app.get("/", async (req, res) => {
     res.send(questions);
  });  
  
+ app.get("/users" , async(req, res)=>{
+   const users = await getUsers();
+   res.send(users);
+ })
+
+
+  
+ app.get("/scores" , async(req, res)=>{
+   const users = await scorecard();
+   res.send(users);
+ })
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
