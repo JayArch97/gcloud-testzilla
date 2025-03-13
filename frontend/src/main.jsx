@@ -15,9 +15,8 @@ function Test() {
 
   const getQuestions = () => {
     return axios
-      .get('https://acostajulio-dev.wl.r.appspot.com')
+      .get('https://acostajulio-dev.wl.r.appspot.com/questions/app')
       .then((response) => {
-        console.log(response.data);
         return response.data;
       })
       .catch((error) => {
@@ -25,11 +24,30 @@ function Test() {
       });
   };
 
+  const submit=async(e)=>{
+    e.preventDefault();
+    try{
+      await axios.post("https://acostajulio-dev.wl.r.appspot.com/testDatabase", {key:"test"})
+    }
+    catch{
+      console.log("error");
+    }
+  }
+
   return (
     <>
+   <form>
+    <label>
+      Backend Verification:
+      <input type="text" name="backend" />
+    </label>
+    <input type="submit" value="Submit" onClick={submit}/>
+  </form>
+
+
       <MDBContainer>
         <MDBRow className="justify-content-center">
-          <form>
+          <form action="POST">
             {questions.map((question, index) => (
               <div key={index}>
                 <p>{question.questions}</p>
@@ -57,6 +75,8 @@ function Test() {
             ))}
           </form>
         </MDBRow>
+
+        <input type="submit" value="submit" className="btn btn-primary" onClick={submit} />
       </MDBContainer>
     </>
   );
