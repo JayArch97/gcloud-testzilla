@@ -11,9 +11,9 @@
 
     const pool = mysql.createPool({
         ...clientOptions,
-        user: 'root',
-        password: 'Javascript1997!',
-        database: 'gcp_testzilla_db'
+        user: process.env.USER,
+        password: process.env.PASSWORD,
+        database: process.env.DATABASE
     }).promise();
 
     export async function getData(){

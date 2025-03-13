@@ -1,22 +1,18 @@
 import { useEffect, useState,ReactNode } from 'react'
 import { createRoot } from 'react-dom/client'
-// import  ComplexNavbar  from './components/Navbar'
-import Form from 'react-bootstrap/Form';
 import axios from 'axios'
 import './index.css'
-import { MDBContainer, MDBRadio, MDBRow } from "mdb-react-ui-kit";
 
 
-const root = createRoot(document.getElementById('root')!)
-
+const root = createRoot(document.getElementById('root'))
 
 
 function Test(){
   const [questions, setQuestions] = useState<{
-    opt_a: ReactNode;
-    opt_b: ReactNode;
-    opt_c: ReactNode;
-    opt_d: ReactNode; questions: string 
+    opt_a: ReactNode,
+    opt_b: ReactNode,
+    opt_c: ReactNode,
+    opt_d: ReactNode, questions: string 
 }[]>([])
 
 
@@ -75,7 +71,6 @@ function Test(){
 
 root.render(
   <>
-    {/* <ComplexNavbar /> */}
     <Test />
-    </>
+  </>
 )
