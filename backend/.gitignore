@@ -2,5 +2,5 @@
 # The following is not tracked by git 
 ######################################
 
-database.js.*
-node_modules.*
+functions/database.js
+node_modules
