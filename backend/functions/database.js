@@ -11,9 +11,9 @@
 
     const pool = mysql.createPool({
         ...clientOptions,
-        user: process.env.USER,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE
+        user: 'root',
+        password: 'Javascript1997!',
+        database: 'gcp_testzilla_db'
     }).promise();
 
     export async function getData(){
@@ -35,6 +35,11 @@
     export async function getScores(){
         const [rows] =  await pool.query('SELECT * FROM Scorecard');
         return rows;
+    }
+
+    export async function addScore(quantity, answers){
+       const result =  await pool.query(`INSERT INTO Scorecard (amount_of_questions, correct_questions, score) VALUES (?, ? ,?)`, [quantity, answers, answers/quantity])
+       return result;
     }
 
     
