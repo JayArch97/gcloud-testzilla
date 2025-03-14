@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import axios from 'axios';
 import './index.css';
 import { MDBContainer, MDBRadio, MDBRow } from 'mdb-react-ui-kit';
+import HomePage from '../components/HomePage';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -109,6 +110,6 @@ function Test() {
 
 root.render(
   <>
-    <Test />
+    <HomePage />
   </>
 );
