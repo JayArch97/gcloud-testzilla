@@ -1,18 +1,12 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import ModalContent from './ModalContent.jsx';
+import NavBar from './NavBar.jsx';
 
 export default function PortalExample() {
-  const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <button onClick={() => setShowModal(true)}>
-        Show modal using a portal
-      </button>
-      {showModal && createPortal(
-        <ModalContent onClose={() => setShowModal(false)} />,
-        document.body
-      )}
+      <NavBar/>
     </>
   );
 }
