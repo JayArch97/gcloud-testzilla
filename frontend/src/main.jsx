@@ -8,6 +8,7 @@ const root = createRoot(document.getElementById('root'));
 
 function Test() {
   const [questions, setQuestions] = useState([]);
+  const [formData, setFormData] = useState({ quantity: '', answers: '' }); // State to hold form data
 
   useEffect(() => {
     getQuestions().then((data) => setQuestions(data));
@@ -24,25 +25,49 @@ function Test() {
       });
   };
 
-  const submit=async(e)=>{
+
+  const handleInputChange = (event) => {
+    // Update form data as input changes
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const submit = async (e) => {
     e.preventDefault();
-    try{
-      await axios.post("https://acostajulio-dev.wl.r.appspot.com/testDatabase", {key:"test"})
+    try {
+      const response = await axios.post("https://acostajulio-dev.wl.r.appspot.com/scores", {
+        quantity: formData.quantity, 
+        answers: formData.answers, 
+      });
+        console.log("Data submitted successfully", response.data); 
+    } catch (error) {
+        console.error("Error submitting data:", error);
+        if (error.response) {
+            console.error('Server responded with:', error.response.data);
+        }
     }
-    catch{
-      console.log("error");
-    }
-  }
+  };
 
   return (
     <>
-   <form>
-    <label>
-      Backend Verification:
-      <input type="text" name="backend" />
-    </label>
-    <input type="submit" value="Submit" onClick={submit}/>
-  </form>
+ <form onSubmit={submit}> 
+        <label>
+          Backend Verification:
+          <input
+            type="number"
+            name="quantity"
+            value={formData.quantity} 
+            onChange={handleInputChange} 
+          />
+          <input
+            type="number"
+            name="answers"
+            value={formData.answers} 
+            onChange={handleInputChange} 
+          />
+        </label>
+        <button type="submit">Submit</button> 
+      </form>
 
 
       <MDBContainer>
