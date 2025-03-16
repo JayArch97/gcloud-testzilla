@@ -43,7 +43,6 @@ export default function Collaboration() {
                 </Canvas>
             </div>
             <a href={'https://github.com/JayArch97/gcloud-testzilla/tree/dev'} className="text-white text-lg hover:text-blue-500">Let's Build!</a>
-
          </div>
          </div>
         </>

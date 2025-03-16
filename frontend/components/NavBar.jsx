@@ -1,4 +1,6 @@
 import quasar from '../src/assets/quasar.png';
+
+
 export default function NavBar() {
     return (
         <div className="bg-[oklch(0.257_0.09_281.288)]">

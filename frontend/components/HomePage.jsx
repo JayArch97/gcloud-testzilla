@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { createPortal } from 'react-dom';
-import ModalContent from './ModalContent.jsx';
+
 import NavBar from './NavBar.jsx';
 import analyticsHomePage from '../src/assets/analyticsHomePage.png';
 import Button from 'react-bootstrap/Button';
@@ -70,8 +69,7 @@ export default function PortalExample() {
       </CardGroup>
     </div>
 
-  <Collaboration/>
-
+    <Collaboration/>
 
     </>
   );
