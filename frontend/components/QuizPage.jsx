@@ -15,7 +15,7 @@ export default function QuizPage() {
   
     const getQuestions = () => {
       return axios
-        .get('https://acostajulio-dev.wl.r.appspot.com/questions/app')
+        .get('https://acostajulio-dev.wl.r.appspot.com')
         .then((response) => {
           return response.data;
         })
@@ -58,6 +58,7 @@ export default function QuizPage() {
               name="quantity"
               value={formData.quantity} 
               onChange={handleInputChange} 
+              className="ml-10 mt-10 mb-10 "
             />
             <input
               type="number"
@@ -66,15 +67,16 @@ export default function QuizPage() {
               onChange={handleInputChange} 
             />
           </label>
-          <button type="submit">Submit</button> 
+          <button type="submit" className="text-black"
+          >Submit</button> 
         </form>
   
   
         <MDBContainer>
-          <MDBRow className="justify-content-center">
+          <MDBRow className="justify-content-center border-solid">
             <form action="POST">
               {questions.map((question, index) => (
-                <div key={index}>
+                <div key={index} className="border border-primary p-3 m-3">
                   <p>{question.questions}</p>
                   <MDBRadio
                     name={`flexRadioDefault-${index}`}
