@@ -12,11 +12,18 @@ export default function QuizPage() {
     useEffect(() => {
       getQuestions().then((data) => setQuestions(data));
     }, []);
-  
+
     const getQuestions = () => {
       return axios
         .get('https://acostajulio-dev.wl.r.appspot.com')
         .then((response) => {
+          for (let i = 0; i < response.data.length; i++) {
+            let test  = response.data[i].q_id
+            // first extraction
+            console.log(test)
+            // console.log(test.match(/\:\s([A-Z])/g).join("").match(/[A-Z]/g))
+          }
+          
           return response.data;
         })
         .catch((error) => {
@@ -46,6 +53,9 @@ export default function QuizPage() {
           }
       }
     };
+
+      
+
   
     return (
       <>
