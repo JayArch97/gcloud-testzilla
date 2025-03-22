@@ -1,4 +1,3 @@
-import { useState } from 'react';
 
 import NavBar from './NavBar.jsx';
 import analyticsHomePage from '../src/assets/analyticsHomePage.png';
