@@ -37,6 +37,11 @@
         return rows;
     }
 
+    export async function addScore(quantity, answers){
+       const result =  await pool.query(`INSERT INTO Scorecard (amount_of_questions, correct_questions, score) VALUES (?, ? ,?)`, [quantity, answers, answers/quantity])
+       return result;
+    }
+
     
     export async function sendData(test){
         const [rows] = await pool.query(

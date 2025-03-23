@@ -1,10 +1,10 @@
 import express from "express";
-import { getData as data , getQuestions, getUsers, getScores as scorecard} from "./functions/database.js";
+import { addScore, getData as data , getQuestions, getUsers, getScores as scorecard} from "./functions/database.js";
 import cors from "cors";
 
 const app = express();
-
 app.use(cors());
+app.use(express.json())
 
 app.get("/", async (req, res) => { 
     const questions = await data();
@@ -22,13 +22,29 @@ app.get("/", async (req, res) => {
    const users = await getUsers();
    res.send(users);
  })
+ 
 
-
-  
  app.get("/scores" , async(req, res)=>{
-   const users = await scorecard();
-   res.send(users);
+  const users = await getScores();
+  res.send(users);
+})
+
+
+ app.post("/scores" , async(req, res)=>{
+   const {quantity, answers} = req.body;
+   const addscore = await addScore(quantity,answers);
+   res.status(201).send(addscore);
  })
+
+ 
+
+ app.post("/testDatabase" , async(req, res)=>{
+  const msg = req.body
+  const users = await scorecard();
+  res.status(201).send(users);
+})
+
+
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
